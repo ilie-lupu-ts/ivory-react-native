@@ -11,14 +11,13 @@ export { ErrorBoundary } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-import { useColorScheme } from "@/components/useColorScheme";
 import config from "@/amplifyconfiguration.json";
 
 Amplify.configure(config);
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: "(tabs)",
+  initialRouteName: "/",
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -48,14 +47,5 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-      </Stack>
-    </ThemeProvider>
-  );
+  return <Stack></Stack>;
 }
