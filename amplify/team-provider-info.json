@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ivoryreactnative-dev-163837-authRole",
+      "UnauthRoleArn": "arn:aws:iam::745520790011:role/amplify-ivoryreactnative-dev-163837-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::745520790011:role/amplify-ivoryreactnative-dev-163837-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-ivoryreactnative-dev-163837-deployment",
+      "UnauthRoleName": "amplify-ivoryreactnative-dev-163837-unauthRole",
+      "StackName": "amplify-ivoryreactnative-dev-163837",
+      "StackId": "arn:aws:cloudformation:eu-west-1:745520790011:stack/amplify-ivoryreactnative-dev-163837/6466fc50-d7d9-11ee-ad17-06b7ab740b07",
+      "AmplifyAppId": "d2lvqie17j43gs"
+    },
+    "categories": {
+      "auth": {
+        "ivoryreactnative76bf98a9": {
+          "userPoolId": "eu-west-1_qy1q4kreP",
+          "userPoolName": "uat-SolarisDemoBackend-Auth",
+          "webClientId": "37pa10mkkkbqr62q66916jdma0",
+          "nativeClientId": "37pa10mkkkbqr62q66916jdma0"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "ivoryreactnative76bf98a9": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_ivoryreactnative76bf98a9_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ivoryreactnative76bf98a9"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ivoryreactnative76bf98a9_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ivoryreactnative76bf98a9"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ivoryreactnative76bf98a9_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ivoryreactnative76bf98a9"
+        }
+      ]
+    },
+    "AMPLIFY_auth_ivoryreactnative76bf98a9_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "ivoryreactnative76bf98a9"
+        }
+      ]
+    }
+  }
+}
