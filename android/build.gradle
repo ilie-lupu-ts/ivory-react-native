@@ -8,6 +8,8 @@ buildscript {
         targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '34')
         kotlinVersion = findProperty('android.kotlinVersion') ?: '1.8.10'
 
+        RNVUseExoplayerIMA = System.getenv("RNV_SAMPLE_ENABLE_ADS") ?: true
+
         ndkVersion = "25.1.8937393"
     }
     repositories {
