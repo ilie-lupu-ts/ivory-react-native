@@ -10,6 +10,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import config from "@/amplifyconfiguration.json";
 import { createTheme } from "@/constants/theme";
 import { useColorScheme } from "react-native";
+import { AppContextProvider } from "@/context/AppContext";
 
 Amplify.configure(config);
 
@@ -54,7 +55,9 @@ function RootLayoutNav() {
 
   return (
     <PaperProvider theme={theme}>
-      <Stack />
+      <AppContextProvider>
+        <Stack />
+      </AppContextProvider>
     </PaperProvider>
   );
 }

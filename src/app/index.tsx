@@ -71,7 +71,9 @@ export default function Page() {
           renderItem={({ item }) => {
             return (
               <View
-                style={{ paddingHorizontal: theme.spacings.paddingHorizontal }}
+                style={{
+                  paddingHorizontal: theme.spacings.screen.paddingHorizontal,
+                }}
               >
                 <Text style={styles.sliderItemTitle}>{item.title}</Text>
                 <View style={{ height: 16 }} />
@@ -85,14 +87,17 @@ export default function Page() {
         <View style={{ height: 64 }} />
         <View
           style={{
-            paddingHorizontal: theme.spacings.paddingHorizontal,
+            paddingHorizontal: theme.spacings.screen.paddingHorizontal,
             gap: 16,
           }}
         >
           <Button variant="secondary" onPress={() => router.push("/login/")}>
             Log in
           </Button>
-          <Button variant="primary" onPress={() => router.push("/signup/")}>
+          <Button
+            variant="primary"
+            onPress={() => router.push("/signup/start/")}
+          >
             Sign up
           </Button>
         </View>

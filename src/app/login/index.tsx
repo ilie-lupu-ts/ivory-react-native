@@ -1,14 +1,15 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { Controller, useForm } from "react-hook-form";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { HelperText, TextInput } from "react-native-paper";
 
 import LogoSmall from "@/assets/icons/appbar_logo.svg";
 
 import { useAppTheme } from "@/constants/theme";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { TabView } from "@/components/TabView";
 import { Button } from "@/components/Button";
-import { HelperText, TextInput } from "react-native-paper";
-import { Controller, useForm } from "react-hook-form";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function LoginPage() {
   const styles = getThemedStyles();
@@ -48,9 +49,14 @@ type EmailForm = {
 };
 
 function SignInWithEmail() {
-  const { control } = useForm<EmailForm>({
+  const { signInWithEmail, authState } = useAuth();
+  const { control, handleSubmit, formState } = useForm<EmailForm>({
     mode: "onChange",
   });
+
+  async function onSubmit(data: EmailForm) {
+    await signInWithEmail({ username: data.email, password: data.password });
+  }
 
   return (
     <View
@@ -60,37 +66,69 @@ function SignInWithEmail() {
         marginTop: 24,
       }}
     >
-      <View style={{}}>
+      <View style={{ gap: 16 }}>
         <Controller
           control={control}
           name="email"
           rules={{ required: "This field is required" }}
-          render={({ field, fieldState }) => {
-            console.log({ fieldState, field });
-
-            return (
-              <>
-                <TextInput
-                  label="Email"
-                  onBlur={field.onBlur}
-                  onChangeText={field.onChange}
-                  value={field.value}
-                />
+          render={({ field, fieldState }) => (
+            <>
+              <TextInput
+                onBlur={field.onBlur}
+                onChangeText={field.onChange}
+                value={field.value}
+                mode="outlined"
+                outlineStyle={{ borderWidth: 1 }}
+                label="Email"
+              />
+              {fieldState.error?.message && (
                 <HelperText
                   type="error"
+                  padding="none"
                   visible={true}
-                  style={{ fontSize: 14, lineHeight: 18 }}
+                  style={{ fontSize: 14, lineHeight: 18, paddingVertical: 0 }}
                 >
                   {fieldState.error?.message}
                 </HelperText>
-              </>
-            );
-          }}
+              )}
+            </>
+          )}
         />
 
-        <TextInput label="Password" />
+        <Controller
+          control={control}
+          name="password"
+          rules={{ required: "This field is required" }}
+          render={({ field, fieldState }) => (
+            <>
+              <TextInput
+                onBlur={field.onBlur}
+                onChangeText={field.onChange}
+                value={field.value}
+                mode="outlined"
+                outlineStyle={{ borderWidth: 1 }}
+                label="Password"
+              />
+              {fieldState.error?.message && (
+                <HelperText
+                  type="error"
+                  padding="none"
+                  visible={true}
+                  style={{ fontSize: 14, lineHeight: 18, paddingVertical: 0 }}
+                >
+                  {fieldState.error?.message}
+                </HelperText>
+              )}
+            </>
+          )}
+        />
       </View>
-      <Button>Continue</Button>
+      <Button
+        loading={authState.isLoading}
+        onPress={formState.isValid ? handleSubmit(onSubmit) : undefined}
+      >
+        Continue
+      </Button>
     </View>
   );
 }
@@ -115,8 +153,8 @@ function getThemedStyles() {
     },
     screenScrollView: {
       flex: 1,
-      paddingHorizontal: theme.spacings.paddingHorizontal,
-      paddingTop: theme.spacings.paddingVertical,
+      paddingHorizontal: theme.spacings.screen.paddingHorizontal,
+      paddingTop: theme.spacings.screen.paddingVertical,
       marginBottom: 16,
     },
     tabView: {
