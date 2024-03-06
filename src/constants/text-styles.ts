@@ -43,6 +43,20 @@ export const textStyles = {
     lineHeight: 24,
     color: "#15141E",
   },
+  bodySmallBold: {
+    fontFamily: "ProximaNova-Semibold",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: 18,
+    color: "#15141E",
+  },
+  bodySmallRegular: {
+    fontFamily: "ProximaNova-Regular",
+    fontWeight: "normal",
+    fontSize: 14,
+    lineHeight: 18,
+    color: "#15141E",
+  },
   labelMedium: {
     fontFamily: "ProximaNova-Semibold",
     fontWeight: "normal",

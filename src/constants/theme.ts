@@ -1,9 +1,4 @@
-import {
-  MD3LightTheme,
-  MD3DarkTheme,
-  configureFonts,
-  useTheme,
-} from "react-native-paper";
+import { MD3LightTheme, MD3DarkTheme, configureFonts, useTheme } from "react-native-paper";
 import { ColorSchemeName } from "react-native";
 
 import { textStyles } from "./text-styles";
@@ -22,6 +17,9 @@ export function createTheme(colorScheme: ColorSchemeName) {
       brandSecondary: "#071034",
       primary: "#2575FC",
       onPrimary: "#FFFFFF",
+      errorContainer: colors.red[100],
+      error: colors.red[600],
+      onErrorContainer: colors.neutrals[900],
     },
     fonts: configureFonts({
       config: { fontFamily: "ProximaNova-Regular" },

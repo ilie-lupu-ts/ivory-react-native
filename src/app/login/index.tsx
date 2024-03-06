@@ -1,15 +1,17 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Controller, useForm } from "react-hook-form";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { HelperText, TextInput } from "react-native-paper";
+import { FontAwesome } from "@expo/vector-icons";
 
 import LogoSmall from "@/assets/icons/appbar_logo.svg";
 
-import { useAppTheme } from "@/constants/theme";
-import { TabView } from "@/components/TabView";
-import { Button } from "@/components/Button";
 import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/Button";
+import { TabView } from "@/components/TabView";
+import { useAppTheme } from "@/constants/theme";
+import { AlertMessage } from "@/components/AlertMessage";
 
 export default function LoginPage() {
   const styles = getThemedStyles();
@@ -49,13 +51,20 @@ type EmailForm = {
 };
 
 function SignInWithEmail() {
-  const { signInWithEmail, authState } = useAuth();
+  const { signInWithEmail, error, isLoading } = useAuth();
   const { control, handleSubmit, formState } = useForm<EmailForm>({
     mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   async function onSubmit(data: EmailForm) {
-    await signInWithEmail({ username: data.email, password: data.password });
+    await signInWithEmail({
+      username: data.email,
+      password: data.password,
+    });
   }
 
   return (
@@ -67,6 +76,7 @@ function SignInWithEmail() {
       }}
     >
       <View style={{ gap: 16 }}>
+        {error && <AlertMessage variant="error" title={error.title} message={error.message} />}
         <Controller
           control={control}
           name="email"
@@ -123,10 +133,7 @@ function SignInWithEmail() {
           )}
         />
       </View>
-      <Button
-        loading={authState.isLoading}
-        onPress={formState.isValid ? handleSubmit(onSubmit) : undefined}
-      >
+      <Button loading={isLoading} onPress={formState.isValid ? handleSubmit(onSubmit) : undefined}>
         Continue
       </Button>
     </View>
