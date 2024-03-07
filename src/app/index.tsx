@@ -1,13 +1,13 @@
+import { useState } from "react";
 import Video from "react-native-video";
-import { Stack, useRouter } from "expo-router";
-import { Text, View, Dimensions, ScrollView, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Stack, useRouter } from "expo-router";
+import { ActivityIndicator } from "react-native-paper";
+import { Text, View, Dimensions, ScrollView, StyleSheet } from "react-native";
 
 import { useAppTheme } from "@/constants/theme";
 import { Carousel } from "@/components/Carousel";
 import { Button } from "@/components/Button";
-import { ActivityIndicator } from "react-native-paper";
-import { useState } from "react";
 
 export default function Page() {
   const theme = useAppTheme();
@@ -19,7 +19,7 @@ export default function Page() {
 
   return (
     <View style={styles.screen}>
-      <Stack.Screen options={{ headerShown: false }} />
+      <Stack.Screen options={{ headerShown: false, title: "" }} />
       <StatusBar style="light" />
 
       <View>
@@ -77,9 +77,7 @@ export default function Page() {
               >
                 <Text style={styles.sliderItemTitle}>{item.title}</Text>
                 <View style={{ height: 16 }} />
-                <Text style={styles.sliderItemDescription}>
-                  {item.description}
-                </Text>
+                <Text style={styles.sliderItemDescription}>{item.description}</Text>
               </View>
             );
           }}
@@ -94,10 +92,7 @@ export default function Page() {
           <Button variant="secondary" onPress={() => router.push("/login/")}>
             Log in
           </Button>
-          <Button
-            variant="primary"
-            onPress={() => router.push("/signup/start/")}
-          >
+          <Button variant="primary" onPress={() => router.push("/signup/start/")}>
             Sign up
           </Button>
         </View>
@@ -130,11 +125,11 @@ function getThemedStyles() {
     },
     sliderItemTitle: {
       ...theme.textStyles.heading2,
-      color: theme.colors.neutrals[900],
+      color: theme.colors.extended.neutrals[900],
     },
     sliderItemDescription: {
       ...theme.textStyles.bodyRegular,
-      color: theme.colors.neutrals[700],
+      color: theme.colors.extended.neutrals[700],
     },
   });
 }

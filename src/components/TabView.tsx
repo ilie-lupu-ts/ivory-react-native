@@ -1,6 +1,6 @@
 import { useAppTheme } from "@/constants/theme";
 import { memo, useMemo, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { TouchableRipple } from "react-native-paper";
 
 type Props = {
@@ -14,11 +14,7 @@ export type TabItem = {
   content: React.ReactNode;
 };
 
-export const TabView: React.FC<Props> = ({
-  initialTabIndex = 0,
-  disabled = false,
-  tabs,
-}) => {
+export const TabView: React.FC<Props> = ({ initialTabIndex = 0, disabled = false, tabs }) => {
   const [activeTabIndex, setIndex] = useState(initialTabIndex);
 
   return (
@@ -50,9 +46,8 @@ export function TabBar({
   return (
     <View style={styles.tabBar}>
       {tabs.map((tab, index) => (
-        <TouchableRipple
+        <Pressable
           key={index}
-          rippleColor={styles.activeTab.backgroundColor}
           style={[
             styles.tab,
             activeIndex === index && styles.activeTab,
@@ -63,7 +58,7 @@ export function TabBar({
           onPress={() => onTabPress(index)}
         >
           <Text style={styles.tabText}>{tab}</Text>
-        </TouchableRipple>
+        </Pressable>
       ))}
     </View>
   );
@@ -78,7 +73,7 @@ export function TabBar({
       tabBar: {
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: theme.colors.neutrals[300],
+        backgroundColor: theme.colors.extended.neutrals[300],
         borderRadius: 8,
         height: 32,
         padding: 1,
@@ -90,14 +85,10 @@ export function TabBar({
       },
       tabText: {
         ...theme.textStyles.labelSmall,
-        color: disabled
-          ? theme.colors.neutrals[500]
-          : theme.colors.neutrals[900],
+        color: disabled ? theme.colors.extended.neutrals[500] : theme.colors.extended.neutrals[900],
       },
       activeTab: {
-        backgroundColor: disabled
-          ? theme.colors.neutrals[100]
-          : theme.colors.white,
+        backgroundColor: disabled ? theme.colors.extended.neutrals[100] : theme.colors.white,
       },
       firstTab: {
         borderTopLeftRadius: 8,

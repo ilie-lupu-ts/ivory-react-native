@@ -6,7 +6,12 @@ import { spacings } from "./spacings";
 import { colors } from "./colors";
 
 export function createTheme(colorScheme: ColorSchemeName) {
-  const paperTheme = colorScheme === "dark" ? MD3DarkTheme : MD3LightTheme;
+  const lightTheme = {
+    ...MD3LightTheme,
+    colors: { ...MD3LightTheme.colors, background: colors.white },
+  };
+
+  const paperTheme = colorScheme === "dark" ? MD3DarkTheme : lightTheme;
 
   return {
     ...paperTheme,
@@ -17,9 +22,9 @@ export function createTheme(colorScheme: ColorSchemeName) {
       brandSecondary: "#071034",
       primary: "#2575FC",
       onPrimary: "#FFFFFF",
-      errorContainer: colors.red[100],
-      error: colors.red[600],
-      onErrorContainer: colors.neutrals[900],
+      errorContainer: colors.extended.red[100],
+      error: colors.extended.red[600],
+      onErrorContainer: colors.extended.neutrals[900],
     },
     fonts: configureFonts({
       config: { fontFamily: "ProximaNova-Regular" },

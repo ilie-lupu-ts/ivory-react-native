@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Text, SafeAreaView, StyleSheet, ScrollView, View } from "react-native";
 
@@ -8,6 +8,7 @@ import CreditCardPaymentsIllustration from "@/assets/images/credit_card_payments
 import { Button } from "@/components/Button";
 
 export default function SignupStartPage() {
+  const router = useRouter();
   const theme = useAppTheme();
   const styles = getThemedStyles(theme);
 
@@ -16,7 +17,6 @@ export default function SignupStartPage() {
       <Stack.Screen
         options={{
           headerTitle: "",
-          headerShadowVisible: false,
           headerRight: () => <LogoSmall />,
         }}
       />
@@ -35,21 +35,24 @@ export default function SignupStartPage() {
             Please make sure your information is
             <Text style={theme.textStyles.bodyRegularBold}> accurate, </Text>
             as you
-            <Text style={theme.textStyles.bodyRegularBold}>
-              {" "}
-              won't be able to modify it later.
-            </Text>
+            <Text style={theme.textStyles.bodyRegularBold}> won't be able to modify it later.</Text>
           </Text>
           <View style={{ height: 16 }} />
           <Text style={theme.textStyles.bodyRegular}>
-            First we'll ask you two quick questions to ensure our services are
-            tailored to your needs.
+            First we'll ask you two quick questions to ensure our services are tailored to your
+            needs.
           </Text>
         </View>
         <View style={styles.illustrationWrapper}>
           <CreditCardPaymentsIllustration />
         </View>
-        <Button onPress={() => {}}>Let's start</Button>
+        <Button
+          onPress={() => {
+            router.push("/signup/basic-info/");
+          }}
+        >
+          Let's start
+        </Button>
       </ScrollView>
     </SafeAreaView>
   );

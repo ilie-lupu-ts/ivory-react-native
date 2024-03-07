@@ -10,11 +10,7 @@ type CarouselProps<T> = {
   renderItem: ({ item, index }: { item: T; index: number }) => JSX.Element;
 };
 
-export const Carousel = <T,>({
-  items,
-  renderItem,
-  height,
-}: CarouselProps<T>) => {
+export const Carousel = <T,>({ items, renderItem, height }: CarouselProps<T>) => {
   const { width } = Dimensions.get("window");
   const [activeSlide, setActiveSlide] = useState(0);
 
@@ -52,7 +48,7 @@ const Pagination = ({ activeIndex, slidesCount }: PaginationProps) => {
             backgroundColor:
               index === activeIndex
                 ? theme.colors.brandPrimary
-                : theme.colors.neutrals[300],
+                : theme.colors.extended.neutrals[300],
             margin: 4,
           }}
         />

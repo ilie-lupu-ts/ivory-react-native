@@ -9,9 +9,7 @@ export default function SignupPage() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <Stack.Screen
-        options={{ headerTitle: "Sign in", headerShadowVisible: false }}
-      />
+      <Stack.Screen options={{ headerTitle: "Sign in" }} />
       <StatusBar style="inverted" />
 
       <Text>Signup page</Text>

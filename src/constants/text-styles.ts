@@ -29,6 +29,13 @@ export const textStyles = {
     lineHeight: 32,
     color: "#15141E",
   },
+  heading4: {
+    fontFamily: "ProximaNova-Semibold",
+    fontWeight: "normal",
+    fontSize: 16,
+    lineHeight: 24,
+    color: "#15141E",
+  },
   bodyRegularBold: {
     fontFamily: "ProximaNova-Semibold",
     fontWeight: "normal",

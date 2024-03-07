@@ -41,8 +41,8 @@ export const Button = ({ variant = "primary", ...props }: ButtonProps) => {
     if (variant === "primary") {
       if (props.loading || !props.onPress) {
         return {
-          backgroundColor: theme.colors.neutrals[300],
-          textColor: theme.colors.neutrals[500],
+          backgroundColor: theme.colors.extended.neutrals[300],
+          textColor: theme.colors.extended.neutrals[500],
         };
       }
 
@@ -54,7 +54,7 @@ export const Button = ({ variant = "primary", ...props }: ButtonProps) => {
       if (props.loading || !props.onPress) {
         return {
           backgroundColor: "transparent",
-          textColor: theme.colors.neutrals[300],
+          textColor: theme.colors.extended.neutrals[300],
         };
       }
       return {

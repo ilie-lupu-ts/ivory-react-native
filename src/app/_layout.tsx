@@ -6,6 +6,9 @@ export { ErrorBoundary } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { PaperProvider } from "react-native-paper";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import "expo-dev-client";
 
 import config from "@/amplifyconfiguration.json";
 import { createTheme } from "@/constants/theme";
@@ -15,7 +18,6 @@ import { AppContextProvider } from "@/context/AppContext";
 Amplify.configure(config);
 
 export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "/",
 };
 
@@ -56,9 +58,13 @@ function RootLayoutNav() {
   return (
     <PaperProvider theme={theme}>
       <AppContextProvider>
-        <Stack>
-          <Stack.Screen name="home" options={{ headerShown: false }} />
-        </Stack>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <BottomSheetModalProvider>
+            <Stack
+              screenOptions={{ headerShadowVisible: false, headerBackButtonMenuEnabled: false }}
+            />
+          </BottomSheetModalProvider>
+        </GestureHandlerRootView>
       </AppContextProvider>
     </PaperProvider>
   );

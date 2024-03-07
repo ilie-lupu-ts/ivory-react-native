@@ -12,8 +12,6 @@ export default function CardsPage() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar style="inverted" />
-
       <Text>Cards page</Text>
     </SafeAreaView>
   );

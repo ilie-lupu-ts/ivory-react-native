@@ -31,7 +31,6 @@ export default function HomePage() {
           ),
         }}
       />
-      <StatusBar style="inverted" />
 
       <ScrollView contentContainerStyle={styles.screenScrollView}>
         <Text>Welcome, {user?.attributes.firstName}</Text>
@@ -47,7 +46,7 @@ function getThemedStyles() {
   return StyleSheet.create({
     screen: {
       flex: 1,
-      backgroundColor: theme.colors.surface,
+      backgroundColor: theme.colors.background,
     },
     screenScrollView: {
       paddingHorizontal: theme.spacings.screen.paddingHorizontal,

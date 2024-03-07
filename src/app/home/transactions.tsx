@@ -11,8 +11,6 @@ export default function TransactionsPage() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar style="inverted" />
-
       <Text>Transactions page</Text>
     </SafeAreaView>
   );

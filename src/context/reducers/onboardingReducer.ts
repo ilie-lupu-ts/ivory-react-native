@@ -2,12 +2,16 @@ import { OnboardingStep } from "@/models/onboarding/common";
 
 export type OnboardingAction =
   | {
-      type: "SET_PREFERRED_TITLE";
+      type: "SET_BASIC_INFO";
       payload: { title: string; firstName: string; lastName: string };
     }
   | {
       type: "SET_EMAIL";
       payload: { email: string };
+    }
+  | {
+      type: "SET_PASSWORD";
+      payload: { password: string };
     };
 
 export type OnboardingState = {
@@ -39,7 +43,7 @@ export const onboardingReducer = (
   action: OnboardingAction
 ): OnboardingState => {
   switch (action.type) {
-    case "SET_PREFERRED_TITLE":
+    case "SET_BASIC_INFO":
       return {
         ...state,
         signUp: {
@@ -55,6 +59,14 @@ export const onboardingReducer = (
         signUp: {
           ...state.signUp,
           email: action.payload.email,
+        },
+      };
+    case "SET_PASSWORD":
+      return {
+        ...state,
+        signUp: {
+          ...state.signUp,
+          password: action.payload.password,
         },
       };
     default:

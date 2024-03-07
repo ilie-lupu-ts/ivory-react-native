@@ -57,8 +57,8 @@ function SignInWithEmail() {
   const { control, handleSubmit, formState } = useForm<EmailForm>({
     mode: "onChange",
     defaultValues: {
-      email: "ilie.lupu+testuser@thinslices.com",
-      password: "12345678",
+      email: "",
+      password: "",
     },
   });
 

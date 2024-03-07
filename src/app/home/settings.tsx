@@ -11,7 +11,6 @@ export default function SettingsPage() {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <StatusBar style="inverted" />
       <Text>Settings page</Text>
     </SafeAreaView>
   );
