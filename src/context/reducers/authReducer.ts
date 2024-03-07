@@ -9,7 +9,7 @@ export type AuthAction =
   | { type: "SIGN_OUT" };
 
 export type AuthState = {
-  status: "loading" | "confirmation_required" | "authenticated" | "unauthenticated";
+  status: "loading" | "confirmation_required" | "authenticated" | "unauthenticated" | "signed_out";
   user?: AuthenticatedUser;
   isLoading: boolean;
   error?: AuthError;
@@ -27,7 +27,7 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
     case "SIGN_IN_SUCCESS":
       return { error: undefined, status: "authenticated", user: action.payload, isLoading: false };
     case "SIGN_OUT":
-      return { error: undefined, status: "unauthenticated", user: undefined, isLoading: false };
+      return { error: undefined, status: "signed_out", user: undefined, isLoading: false };
     case "SIGN_IN_ERROR":
       return {
         error: action.payload,

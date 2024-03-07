@@ -56,7 +56,9 @@ function RootLayoutNav() {
   return (
     <PaperProvider theme={theme}>
       <AppContextProvider>
-        <Stack />
+        <Stack>
+          <Stack.Screen name="home" options={{ headerShown: false }} />
+        </Stack>
       </AppContextProvider>
     </PaperProvider>
   );

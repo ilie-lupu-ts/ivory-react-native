@@ -2,11 +2,9 @@ import { useContext } from "react";
 
 import { AppContext } from "@/context/AppContext";
 import { AuthError } from "@/models/auth/AuthError";
-import { useRouter } from "expo-router";
 
 export const useAuth = () => {
   const { authService, personService, authState, dispatchAuthState } = useContext(AppContext);
-  const router = useRouter();
 
   async function signInWithEmail({ username, password }: { username: string; password: string }) {
     try {
@@ -23,9 +21,6 @@ export const useAuth = () => {
         type: "SIGN_IN_SUCCESS",
         payload: { ...user, person },
       });
-
-      router.dismissAll();
-      router.replace("/home/");
     } catch (error) {
       dispatchAuthState({
         type: "SIGN_IN_ERROR",
@@ -34,8 +29,17 @@ export const useAuth = () => {
     }
   }
 
+  async function signOut() {
+    const signedOut = await authService.signOut();
+
+    if (signedOut) {
+      dispatchAuthState({ type: "SIGN_OUT" });
+    }
+  }
+
   return {
     signInWithEmail,
+    signOut,
     user: authState.user,
     isLoading: authState.isLoading,
     error: authState.error,

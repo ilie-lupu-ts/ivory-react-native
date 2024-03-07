@@ -38,6 +38,15 @@ export class AuthService {
       handleServiceError(error);
     }
   }
+
+  async signOut(): Promise<boolean> {
+    try {
+      await signOut();
+      return true;
+    } catch (error) {
+      handleServiceError(error);
+    }
+  }
 }
 
 function handleServiceError(error: unknown): never {

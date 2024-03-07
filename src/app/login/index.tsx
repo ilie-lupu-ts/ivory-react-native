@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Controller, useForm } from "react-hook-form";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -12,6 +12,7 @@ import { Button } from "@/components/Button";
 import { TabView } from "@/components/TabView";
 import { useAppTheme } from "@/constants/theme";
 import { AlertMessage } from "@/components/AlertMessage";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const styles = getThemedStyles();
@@ -51,12 +52,13 @@ type EmailForm = {
 };
 
 function SignInWithEmail() {
-  const { signInWithEmail, error, isLoading } = useAuth();
+  const router = useRouter();
+  const { signInWithEmail, error, isLoading, user } = useAuth();
   const { control, handleSubmit, formState } = useForm<EmailForm>({
     mode: "onChange",
     defaultValues: {
-      email: "",
-      password: "",
+      email: "ilie.lupu+testuser@thinslices.com",
+      password: "12345678",
     },
   });
 
@@ -66,6 +68,13 @@ function SignInWithEmail() {
       password: data.password,
     });
   }
+
+  useEffect(() => {
+    if (user) {
+      router.dismissAll();
+      router.replace("/home/");
+    }
+  }, [user]);
 
   return (
     <View
@@ -118,6 +127,7 @@ function SignInWithEmail() {
                 mode="outlined"
                 outlineStyle={{ borderWidth: 1 }}
                 label="Password"
+                secureTextEntry={true}
               />
               {fieldState.error?.message && (
                 <HelperText
